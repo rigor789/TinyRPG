@@ -3,23 +3,26 @@ TinyRPG
 
 A little game project im working on
 
+-
 Features:
 =========
 
-*Dynamic level loading
-*Dynamic level width, and height
-*Level scrolling
+* Dynamic level loading
+* Dynamic level width, and height
+* Level scrolling
 
+-
 Working on:
 ===========
 
-*Player handling
+* Player handling
 
+-
 ToDo:
 =====
 
-*GUI
-*Collision
-*Enemy
-*Player graphics
-*Shops
+* GUI
+* Collision
+* Enemy
+* Player graphics
+* Shops
