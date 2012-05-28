@@ -4,7 +4,7 @@ public enum Levels {
 	LEVEL1(1, "/level.png"),
 	LEVEL2(2, "/level2.png"),
 	LEVEL3(3, "/level3.png"),
-	LEVEL4(4, "/level4.png");
+	LEVEL4(4, "/level4.trpg");
 	
 	@SuppressWarnings("unused")
 	private int number;

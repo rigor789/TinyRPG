@@ -6,6 +6,7 @@ import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.event.KeyEvent;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
@@ -31,8 +32,9 @@ public class Game extends Canvas implements Runnable {
 	public static int bgX = 0;
 	public static int bgY = 0;
 	private Player player;
-
-	// private Sound sound ;
+	private Player player2;
+	private PlayerInputHandler playerIH;
+	private PlayerInputHandler playerIH2;
 
 	public static void main(String[] args) {
 		Game game = new Game();
@@ -63,8 +65,12 @@ public class Game extends Canvas implements Runnable {
 		screen = new Screen(WIDTH, HEIGHT);
 		level = new Level(new Resource(), Levels.LEVEL4, screen);
 		level.loadLevel();
-		player = new Player(screen, true);
-		// sound = new Sound("/test.wav");
+		player = new Player(screen,  Sprites.terrain[0][1]);
+		player2 = new Player(screen,  Sprites.terrain[1][1]);
+		playerIH = new PlayerInputHandler(player);
+		addKeyListener(playerIH);
+		playerIH2 = new PlayerInputHandler(player2, KeyEvent.VK_D, KeyEvent.VK_A, KeyEvent.VK_W, KeyEvent.VK_S);
+		addKeyListener(playerIH2);
 	}
 
 	public void start() {
@@ -111,7 +117,9 @@ public class Game extends Canvas implements Runnable {
 	}
 
 	public void update() {
-		player.handlePlayer(input);
+		// player.handlePlayer(input);
+		playerIH.handleInput();
+		playerIH2.handleInput();
 	}
 
 	public void render() {
@@ -122,9 +130,10 @@ public class Game extends Canvas implements Runnable {
 			return;
 		}
 
-		// level.renderBackground(bgX, bgY, screen);
+		level.renderBackground(bgX, bgY, screen);
 
-		player.renderPlayer(true);
+		player.renderPlayer();
+		player2.renderPlayer();
 
 		/** RENDERING THE PIXELS **/
 		for (int y = 0; y < screen.h; y++) {
